@@ -1,0 +1,86 @@
+// "static void main" must be defined in a public class.
+public class Main {
+    
+    static class TreeNode{
+        int data;
+        TreeNode left;
+        TreeNode right;
+        
+        TreeNode(int data){
+            this.left= null;
+            this.right=null;
+            this.data = data;
+        }
+        
+    }
+    
+    
+    static TreeNode root = null;
+    
+    
+    static void BFS(){
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        queue.add(root);
+        
+        while(!queue.isEmpty()){
+            
+            TreeNode node = queue.poll();
+            System.out.println(node.data+" ");
+            if(node.left!=null){
+                queue.add(node.left);
+            }
+            
+            if(node.right!=null){
+                queue.add(node.right);
+            }
+        }
+        
+    }
+    
+    static void getAverage(){
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        queue.add(root);
+        List<Integer> result = new ArrayList<>();
+        
+        while(!queue.isEmpty()){
+            
+            double count = queue.size();
+            double sum = 0;
+            
+            for(int i=0;i<count;i++){
+                TreeNode p = queue.poll();
+                sum+=p.data;
+                if(p.left !=null){
+                    queue.add(p.left);
+                }
+                if(p.right!=null){
+                   queue.add(p.right); 
+                }
+            }
+            //result.add(sum/count);
+            System.out.println("sum/count==>"+sum/count);
+        }
+        
+    }
+    
+    
+    public static void main(String[] args) {
+        System.out.println("Hello World!");
+        // root = new TreeNode(1);
+        // root.left = new TreeNode(2);
+        // root.right = new TreeNode(3); 
+        // root.left.left = new TreeNode(4); 
+        // root.left.right = new TreeNode(5); 
+        
+        root = new TreeNode(3);
+        root.left = new TreeNode(9);
+        root.right = new TreeNode(20);
+        root.right.left = new TreeNode(10);
+        root.right.right = new TreeNode(10);
+        root.left.left = new TreeNode(10); 
+        root.left.right = new TreeNode(10); 
+        
+        BFS();
+        getAverage();
+    }
+}
