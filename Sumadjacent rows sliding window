@@ -1,0 +1,71 @@
+import java.io.*;
+import java.util.*;
+
+/*
+ * To execute Java, please define "static void main" on a class
+ * named Solution.
+ *
+ * If you need more classes, simply define them inline.
+ */
+
+class Solution {
+  public static void main(String[] args) {
+    
+    int arr[] = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    
+    slidingWindow(arr,3);
+    
+    
+  }
+  
+  
+  static void slidingWindow(int[] arr, int k){
+    
+    if(k==1){
+      return ;
+    }
+    
+    int left = 0;
+    int right = k;
+    int total = arr.length-1;
+    int count = 1;
+    
+    
+    while(count<total){
+      
+     int sum = 0;
+      
+      for(int i=left;i<right;i++){
+         sum+=arr[i];
+      }
+      
+     System.out.println("SUM of adjacent elements--->"+sum);       
+      left++;
+      right++;
+      count++;
+       
+    }
+    
+    
+    left = 0;
+    right = k;
+    total = arr.length-2;
+    count = 0;
+   
+    while(count<total){
+      
+      for(int i=left;i<right;i++){
+         sum+=arr[i];
+      }
+      
+      System.out.println("MAX of adjacent elements--->"+sum);       
+      left++;
+      right++;
+      count++;
+      
+    }
+    
+    
+  }
+  
+}
