@@ -1,0 +1,101 @@
+public class MainClass {
+  static class Node{
+        int data;
+        Node next;
+        Node(int data){
+            this.data = data;
+            next = null;
+        }
+    }
+    public static Node head;
+    static int counter = 0;
+    
+    public static boolean removeAtPos(int data){
+      
+        Node current = head;
+        Node previous = null;
+        
+        if(current==null){
+            return false;
+        }else{
+        while(current!=null){
+            System.out.println("current.data==>"+current.data);
+            System.out.println("data==>"+data);
+            
+            if(current.data == data){
+                System.out.println("remove at the position***"+previous.data);
+                System.out.println("remove at current**"+current.data);
+                previous.next = current.next;
+            }
+            previous = current;
+            current = current.next;
+        }
+        }
+        return false;
+    }
+  
+    public static void push(Node node){        
+        if(head==null){
+            head = node;
+        }else{
+            node.next = head;
+            head = node;
+        }        
+        counter++;
+    }
+    
+    public static Node pop(){
+        Node temp = null;
+        if(head!=null){
+           temp = head;
+           head = head.next;
+         }
+     return temp;
+    }
+    
+    public static void insertTail(Node node){
+        System.out.println("Inser tail head"+head);
+        if(head==null){
+            head = node;
+        }else{
+            Node current = head;
+            while(current.next!=null){
+                current = current.next;
+            }
+            current.next = node;
+        }
+    }
+    
+   
+    public static void main(String[] args) throws IOException {
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        
+        Node node = new Node(10);Node node3 = new Node(40);
+        Node node1 = new Node(20);Node node2 = new Node(30);
+        push(node);push(node1);push(node2);push(node3);        
+        Node current = head;
+        while(current!=null){
+            System.out.println("Display Value==>"+current.data);
+            current = current.next;
+        }
+       Node deleted = pop();
+      System.out.println("Poped***"+deleted.data);
+        
+        Node node5 = new Node(50);
+        insertTail(node5);
+        
+        current = head;
+         while(current!=null){
+            System.out.println("Display Value==>"+current.data);
+            current = current.next;
+        }
+        
+      boolean bool=  removeAtPos(20);
+        
+        current = head;
+         while(current!=null){
+            System.out.println("Current list after node removal==>"+current.data);
+            current = current.next;
+        }
+    }
+}
