@@ -1,0 +1,47 @@
+// "static void main" must be defined in a public class.
+public class BinarySearch {
+   
+     public static void main(String []args){
+          int[] iArr = new int[5];
+          iArr[0] = 1;
+          iArr[1] = 2;
+          iArr[2] = 3;
+          iArr[3] = 4;
+          iArr[4] = 5;
+    int min = 0;
+	int max = iArr.length-1;
+    int targetValue = 6;
+    
+//     while(min<=max){
+//         int  mid = (min + max) / 2;
+//         if(targetValue==iArr[mid]){
+//            System.out.println("found the value "+iArr[mid]);
+//             break;
+//         }else if(iArr[mid]<targetValue){
+//             min = mid+1;
+//         }else{
+//             max = mid-1;
+//         }
+//     }
+//           if (min>max) {
+//             System.out.println(targetValue + " is not present in the list.\n");
+//         }
+         binarySearch(iArr,max,min,6);
+     }
+    
+    public static void binarySearch(int[] array, int high, int low,int target){
+        int mid = (low+high)/2;        
+        if(low>high){
+          System.out.println("Item not found") ; 
+        }else if(low<=high){
+            if(target==array[mid]){
+                System.out.println("item found");
+            }else if(array[mid]<target){
+                binarySearch(array,high,mid+1,15);
+            }else{
+                binarySearch(array,mid-1,low,15);
+            }
+        }
+        
+    }
+}
