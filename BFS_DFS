@@ -1,0 +1,123 @@
+import java.io.*;
+import java.util.*;
+
+/*
+ * To execute Java, please define "static void main" on a class
+ * named Solution.
+ *
+ * If you need more classes, simply define them inline.
+ */
+
+class Solution {
+  public static void main(String[] args) {
+    
+    TreeNode node1 = new TreeNode(10);  
+    TreeNode node2 = new TreeNode(20);
+    TreeNode node3 = new TreeNode(30);
+    TreeNode node4 = new TreeNode(40);
+    TreeNode node5 = new TreeNode(50);
+    TreeNode node6 = new TreeNode(60);
+    TreeNode node7 = new TreeNode(70);
+    
+    node1.neighbors.add(node2);
+    node1.neighbors.add(node3);
+    node2.neighbors.add(node3);
+    node3.neighbors.add(node4);
+    node4.neighbors.add(node5);
+    node5.neighbors.add(node6);
+    node6.neighbors.add(node4);
+    node6.neighbors.add(node7);
+    node7.neighbors.add(node2);
+    
+    //traverseDFS(node1);
+    traverseBFS(node1);
+  }
+  
+  
+  static void traverseDFS(TreeNode root){
+    
+    System.out.println("Inside TreeNode Traverse DFS:-");
+  
+    Stack<TreeNode> stack = new Stack<TreeNode>();
+    
+    stack.push(root);
+    
+    while(!stack.isEmpty()){
+      
+      TreeNode temp = stack.pop();
+      
+      if(!temp.visited){
+        
+        System.out.println("Node visited==>"+temp.data);
+        temp.visited = true;
+      }
+      
+      List<TreeNode> neighbors = temp.neighbors;
+      
+      for(int i=0;i<neighbors.size();i++){
+        
+         TreeNode neighborNode = neighbors.get(i);
+        
+         if(!neighborNode.visited){
+          stack.push(neighborNode);
+        }
+        
+      }    
+    }
+  }
+  
+  
+  static void traverseBFS(TreeNode root){
+  
+    System.out.println("Traverse BFS:-");
+  
+    Queue<TreeNode> queue = new LinkedList<TreeNode>();
+    
+    queue.add(root);
+    
+    while(!queue.isEmpty()){
+      
+      TreeNode temp = queue.poll();
+      
+      if(!temp.visited){
+        System.out.println("Node visited===>"+temp.data);
+        temp.visited = true;
+      }
+       // List<TreeNode> neighbor = temp.neighbors;
+        
+        for(TreeNode neighbor: temp.neighbors){
+          
+          if(!neighbor.visited){
+            
+            queue.add(neighbor);
+          
+          }
+        
+        }
+      }
+    
+    }
+    
+    
+  
+  
+  
+  
+  static class TreeNode{
+  
+    boolean visited;
+    int data;
+    List<TreeNode> neighbors;
+    
+    
+    TreeNode(int data){
+      
+      this.data= data;
+      this.neighbors = new ArrayList<TreeNode>();
+      this.visited = false;
+    }
+    
+  }
+ 
+  
+}
